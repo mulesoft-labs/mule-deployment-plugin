@@ -1,0 +1,87 @@
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core" xmlns:f="/lib/form">
+    <!--
+      This jelly script is used for per-project configuration.
+
+      See global.jelly for a general discussion about jelly script.
+    -->
+
+    <!--
+      Creates a text field that shows the value of the "name" property.
+      When submitted, it will be passed to the corresponding constructor parameter.
+    -->
+
+    <f:section title="Deploy to Cloudhub">
+
+
+        <f:entry title="User Name" field="username">
+            <f:textbox default=""/>
+        </f:entry>
+
+        <f:entry title="Password" field="password">
+            <f:password/>
+        </f:entry>
+
+        <f:entry title="Application Location" field="application">
+            <f:textbox default=""/>
+        </f:entry>
+
+        <f:entry title="Environment" field="environment">
+            <f:textbox default=""/>
+        </f:entry>
+
+        <f:entry title="Application Name" field="applicationName">
+            <f:textbox default=""/>
+        </f:entry>
+
+        <f:block>
+            <table>
+                <f:optionalBlock name="dynamic" title="Advanced">
+                    <f:entry title="AWS Region" field="region">
+                        <f:textbox default=""/>
+                    </f:entry>
+
+                    <f:entry title="Mule Version" field="version">
+                        <f:textbox default=""/>
+                    </f:entry>
+
+                    <f:entry title="Number of AWS Workers" field="workers">
+                        <f:textbox default=""/>
+                    </f:entry>
+
+                    <f:entry title="AWS Worker Type" field="workerType">
+                        <f:textbox default=""/>
+                    </f:entry>
+                </f:optionalBlock>
+            </table>
+        </f:block>
+
+
+        <f:entry>
+            <f:repeatable var="chProperties" items="${instance.chProperties}" noAddButton="false" add="Add Properties">
+                <table width="100%">
+                    <f:entry title="Property">
+                        <TD>
+                            <f:entry title="Key" field="key">
+                                <f:textbox value="${chProperties.key}"/>
+                            </f:entry>
+                        </TD>
+                        <TD>
+                            <f:entry title="Value" field="value">
+                                <f:textbox value="${chProperties.value}"/>
+                            </f:entry>
+                        </TD>
+                    </f:entry>
+                    <f:entry>
+                        <div align="right" class="repeatable-delete show-if-only" style="margin-left: 1em;">
+                            <f:repeatableDeleteButton value="${%Delete chProperties}"/>
+                            <br/>
+                        </div>
+                    </f:entry>
+                </table>
+            </f:repeatable>
+        </f:entry>
+    </f:section>
+
+
+</j:jelly>
