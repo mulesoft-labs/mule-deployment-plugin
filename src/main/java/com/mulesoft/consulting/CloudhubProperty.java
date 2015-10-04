@@ -14,12 +14,9 @@ public class CloudhubProperty {
         this.value = value;
     }
 
-    public CloudhubProperty() {
-    }
+    private String key ;
 
-    public String key = null;
-
-    public String value = null;
+    private String value ;
 
     public void setKey(String key) {
         this.key = key;
